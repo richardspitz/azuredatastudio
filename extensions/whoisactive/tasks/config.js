@@ -10,15 +10,15 @@ var srcRoot = path.resolve(projectRoot, 'src');
 var localization = path.resolve(projectRoot, 'localization');
 
 var config = {
-    paths: {
-        project: {
-            root: projectRoot,
-            localization: localization
-        },
-        extension: {
-            root: srcRoot
-        }
-    }
+	paths: {
+		project: {
+			root: projectRoot,
+			localization: localization
+		},
+		extension: {
+			root: srcRoot
+		}
+	}
 };
 
 module.exports = config;

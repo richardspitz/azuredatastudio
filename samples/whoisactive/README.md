@@ -1,0 +1,1 @@
+This extension can be found in ..\..\extensions\whoisactive

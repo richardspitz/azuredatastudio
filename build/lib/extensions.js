@@ -191,7 +191,7 @@ const excludedExtensions = [
 // {{SQL CARBON EDIT}}
 const sqlBuiltInExtensions = [
     // Add SQL built-in extensions here.
-    // the extension will be excluded from SQLOps package and will have separate vsix packages
+    // the extension will be excluded from ADS package and will have separate vsix packages
     'admin-tool-ext-win',
     'agent',
     'import',
@@ -200,7 +200,9 @@ const sqlBuiltInExtensions = [
     'dacpac',
     'schema-compare',
     'cms',
-    'query-history'
+    'query-history',
+    'server-report',
+    'whoisactive'
 ];
 // make resource deployment and BDC extension only available in insiders
 if (process.env['VSCODE_QUALITY'] === 'stable') {
@@ -218,7 +220,7 @@ function packageLocalExtensionsStream() {
     })
         .filter(({ name }) => excludedExtensions.indexOf(name) === -1)
         .filter(({ name }) => builtInExtensions.every(b => b.name !== name))
-        .filter(({ name }) => sqlBuiltInExtensions.indexOf(name) === -1); // {{SQL CARBON EDIT}} add aditional filter
+        .filter(({ name }) => sqlBuiltInExtensions.indexOf(name) === -1); // {{SQL CARBON EDIT}} add additional filter
     const nodeModules = gulp.src('extensions/node_modules/**', { base: '.' });
     const localExtensions = localExtensionDescriptions.map(extension => {
         return fromLocal(extension.path)
@@ -248,10 +250,10 @@ function packageBuiltInExtensions() {
         .filter(({ name }) => excludedExtensions.indexOf(name) === -1)
         .filter(({ name }) => builtInExtensions.every(b => b.name !== name))
         .filter(({ name }) => sqlBuiltInExtensions.indexOf(name) >= 0);
-    const visxDirectory = path.join(path.dirname(root), 'vsix');
+    const vsixDirectory = path.join(path.dirname(root), 'vsix');
     try {
-        if (!fs.existsSync(visxDirectory)) {
-            fs.mkdirSync(visxDirectory);
+        if (!fs.existsSync(vsixDirectory)) {
+            fs.mkdirSync(vsixDirectory);
         }
     }
     catch (err) {
@@ -260,7 +262,7 @@ function packageBuiltInExtensions() {
     }
     sqlBuiltInLocalExtensionDescriptions.forEach(element => {
         let pkgJson = JSON.parse(fs.readFileSync(path.join(element.path, 'package.json'), { encoding: 'utf8' }));
-        const packagePath = path.join(visxDirectory, `${pkgJson.name}-${pkgJson.version}.vsix`);
+        const packagePath = path.join(vsixDirectory, `${pkgJson.name}-${pkgJson.version}.vsix`);
         console.info('Creating vsix for ' + element.path + ' result:' + packagePath);
         vsce.createVSIX({
             cwd: element.path,

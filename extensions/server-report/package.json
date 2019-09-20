@@ -6,7 +6,7 @@
 	"publisher": "Microsoft",
 	"preview": true,
 	"engines": {
-		"vscode": "^1.26.0",
+		"vscode": "^1.37.0",
 		"azdata": "*"
 	},
 	"icon": "images/sqlserver.png",
@@ -376,8 +376,7 @@
 	"scripts": {
 		"build": "gulp build",
 		"compile": "gulp compile",
-		"watch": "gulp watch",
-		"postinstall": "node ./node_modules/vscode/bin/install"
+		"watch": "gulp watch"
 	},
 	"dependencies": {
 		"fs": "0.0.1-security",
@@ -387,6 +386,7 @@
 		"openurl": "^1.1.1"
 	},
 	"devDependencies": {
+		"@types/vscode": "1.37.0",
 		"child-process-promise": "^2.2.1",
 		"del": "^3.0.0",
 		"gulp": "^4.0.0",
@@ -398,7 +398,6 @@
 		"tslint": "^3.14.0",
 		"typemoq": "^2.1.0",
 		"typescript": "^2.9.2",
-		"vsce": "1.36.2",
-		"vscode": "^1.1.6"
+		"vsce": "1.36.2"
 	}
 }
