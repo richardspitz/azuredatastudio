@@ -12,14 +12,12 @@ import MainController from './controllers/mainController';
 
 let controllers: ControllerBase[] = [];
 
-export async function activate(context: vscode.ExtensionContext): Promise<boolean> {
+export function activate(context: vscode.ExtensionContext): void {
 	// Start the main controller
 	let mainController = new MainController(context);
 	controllers.push(mainController);
 	context.subscriptions.push(mainController);
 	mainController.activate();
-
-	return true;
 }
 
 export function deactivate(): void {
