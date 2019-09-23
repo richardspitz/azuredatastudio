@@ -34,12 +34,6 @@ gulp.task('lint', () => {
 });
 
 gulp.task('compile:src', function (done) {
-	gulp.src([
-		config.paths.project.root + '/src/**/*.sql',
-		config.paths.project.root + '/src/**/*.svg',
-		config.paths.project.root + '/src/**/*.html'
-	]).pipe(gulp.dest('out/src/'));
-
 	let srcFiles = [
 		config.paths.project.root + '/src/**/*.ts',
 		config.paths.project.root + '/src/**/*.js',

@@ -12,7 +12,6 @@ let tslint = require('gulp-tslint');
 let ts = require('gulp-typescript');
 let cproc = require('child_process');
 let os = require('os');
-let path = require('path');
 
 let config = require('./config');
 let tsProject = ts.createProject('tsconfig.json');
@@ -35,12 +34,6 @@ gulp.task('lint', () => {
 });
 
 gulp.task('compile:src', function(done) {
-	gulp.src([
-		config.paths.project.root + '/src/**/*.sql',
-		config.paths.project.root + '/src/**/*.svg',
-		config.paths.project.root + '/src/**/*.html'
-	]).pipe(gulp.dest('out/src/'));
-
 	let srcFiles = [
 		config.paths.project.root + '/src/**/*.ts',
 		config.paths.project.root + '/src/**/*.js',

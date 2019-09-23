@@ -26,32 +26,32 @@
                 "command": "sp_whoisactive.install",
                 "title": "Whoisactive: Install sp_whoisactive",
                 "icon": {
-                    "light": "./out/src/media/download.svg",
-                    "dark": "./out/src/media/download_inverse.svg"
+                    "light": "./media/download.svg",
+                    "dark": "./media/download_inverse.svg"
                 }
             },
             {
                 "command": "sp_whoisactive.findBlockLeaders",
                 "title": "Whoisactive: Find leader of block",
                 "icon": {
-                    "light": "./out/src/media/blocker.svg",
-                    "dark": "./out/src/media/blocker_inverse.svg"
+                    "light": "./media/blocker.svg",
+                    "dark": "./media/blocker_inverse.svg"
                 }
             },
             {
                 "command": "sp_whoisactive.getPlans",
                 "title": "Whoisactive: Get plans",
                 "icon": {
-                    "light": "./out/src/media/monitor.svg",
-                    "dark": "./out/src/media/monitor_inverse.svg"
+                    "light": "./media/monitor.svg",
+                    "dark": "./media/monitor_inverse.svg"
                 }
             },
             {
                 "command": "sp_whoisactive.documentation",
                 "title": "Whoisactive: Documentation",
                 "icon": {
-                    "light": "./out/src/media/documentation.svg",
-                    "dark": "./out/src/media/documentation_inverse.svg"
+                    "light": "./media/documentation.svg",
+                    "dark": "./media/documentation_inverse.svg"
                 }
             }
         ],
@@ -81,9 +81,9 @@
                             "showTopNData": 10
                         }
                     },
-                    "queryFile": "./out/src/sql/cpuUsage.sql",
+                    "queryFile": "./sql/cpuUsage.sql",
                     "details": {
-                        "queryFile": "./out/src/sql/cpuUsage_details.sql",
+                        "queryFile": "./sql/cpuUsage_details.sql",
                         "label": {
                             "column": "session_id",
                             "state": []
@@ -105,9 +105,9 @@
                             "showTopNData": 10
                         }
                     },
-                    "queryFile": "./out/src/sql/cpuDelta.sql",
+                    "queryFile": "./sql/cpuDelta.sql",
                     "details": {
-                        "queryFile": "./out/src/sql/cpuDelta_details.sql",
+                        "queryFile": "./sql/cpuDelta_details.sql",
                         "label": {
                             "column": "session_id",
                             "state": []
@@ -129,9 +129,9 @@
                             "showTopNData": 10
                         }
                     },
-                    "queryFile": "./out/src/sql/memoryUsage.sql",
+                    "queryFile": "./sql/memoryUsage.sql",
                     "details": {
-                        "queryFile": "./out/src/sql/memoryUsage_details.sql",
+                        "queryFile": "./sql/memoryUsage_details.sql",
                         "label": {
                             "column": "session_id",
                             "state": []
@@ -153,9 +153,9 @@
                             "showTopNData": 10
                         }
                     },
-                    "queryFile": "./out/src/sql/memoryDelta.sql",
+                    "queryFile": "./sql/memoryDelta.sql",
                     "details": {
-                        "queryFile": "./out/src/sql/memoryDelta_details.sql",
+                        "queryFile": "./sql/memoryDelta_details.sql",
                         "label": {
                             "column": "session_id",
                             "state": []
@@ -170,7 +170,7 @@
                     "type": {
                         "table": null
                     },
-                    "queryFile": "./out/src/sql/blockingSessions.sql"
+                    "queryFile": "./sql/blockingSessions.sql"
                 }
             }
         ],

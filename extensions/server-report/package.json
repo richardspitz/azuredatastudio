@@ -25,32 +25,32 @@
 				"command": "tempdb.startEvent",
 				"title": "Start",
 				"icon": {
-					"light": "./out/src/media/launch.svg",
-					"dark": "./out/src/media/launch_inverse.svg"
+					"light": "./media/launch.svg",
+					"dark": "./media/launch_inverse.svg"
 				}
 			},
 			{
 				"command": "tempdb.stopEvent",
 				"title": "Stop",
 				"icon": {
-					"light": "./out/src/media/blocker.svg",
-					"dark": "./out/src/media/blocker_inverse.svg"
+					"light": "./media/blocker.svg",
+					"dark": "./media/blocker_inverse.svg"
 				}
 			},
 			{
 				"command": "tempdb.contention",
 				"title": "Contention Help for Tempdb",
 				"icon": {
-					"light": "./out/src/media/documentation.svg",
-					"dark": "./out/src/media/documentation_inverse.svg"
+					"light": "./media/documentation.svg",
+					"dark": "./media/documentation_inverse.svg"
 				}
 			},
 			{
 				"command": "tempdb.pauseEvent",
 				"title": "Pause",
 				"icon": {
-					"light": "./out/src/media/insights.svg",
-					"dark": "./out/src/media/insights_inverse.svg"
+					"light": "./media/insights.svg",
+					"dark": "./media/insights_inverse.svg"
 				}
 			}
 		],
@@ -68,8 +68,8 @@
 							"id": "server-reports-monitoring",
 							"title": "Monitor",
 							"icon": {
-								"light": "./out/src/media/monitor.svg",
-								"dark": "./out/src/media/monitor_inverse.svg"
+								"light": "./media/monitor.svg",
+								"dark": "./media/monitor_inverse.svg"
 							},
 							"container": {
 								"server-reports-monitoring-container": {}
@@ -79,8 +79,8 @@
 							"id": "server-reports-performance",
 							"title": "Performance",
 							"icon": {
-								"light": "./out/src/media/performance.svg",
-								"dark": "./out/src/media/performance_inverse.svg"
+								"light": "./media/performance.svg",
+								"dark": "./media/performance_inverse.svg"
 							},
 							"container": {
 								"server-reports-performance-container": {}
@@ -93,8 +93,8 @@
 								"server-reports-tempdb-container": {}
 							},
 							"icon": {
-								"light": "./out/src/media/tempdb.svg",
-								"dark": "./out/src/media/tempdb_inverse.svg"
+								"light": "./media/tempdb.svg",
+								"dark": "./media/tempdb_inverse.svg"
 							}
 						}
 					]
@@ -114,7 +114,7 @@
 							"columnsAsLabels": true
 						}
 					},
-					"queryFile": "./out/src/sql/all_db_space_used.sql"
+					"queryFile": "./sql/all_db_space_used.sql"
 				}
 			},
 			{
@@ -129,7 +129,7 @@
 							"columnsAsLabels": false
 						}
 					},
-					"queryFile": "./out/src/sql/cpumetric.sql"
+					"queryFile": "./sql/cpumetric.sql"
 				}
 			},
 			{
@@ -145,7 +145,7 @@
 							"columnsAsLabels": false
 						}
 					},
-					"queryFile": "./out/src/sql/backup_size_trend.sql"
+					"queryFile": "./sql/backup_size_trend.sql"
 				}
 			},
 			{
@@ -160,9 +160,9 @@
 							"columnsAsLabels": true
 						}
 					},
-					"queryFile": "./out/src/sql/waits_paul_randal.sql",
+					"queryFile": "./sql/waits_paul_randal.sql",
 					"details": {
-						"queryFile": "./out/src/sql/waits_detail_paul_randal.sql",
+						"queryFile": "./sql/waits_detail_paul_randal.sql",
 						"label": {
 							"column": "WaitType",
 							"state": []
@@ -183,9 +183,9 @@
 							"columnsAsLabels": true
 						}
 					},
-					"queryFile": "./out/src/sql/wait_resources.sql",
+					"queryFile": "./sql/wait_resources.sql",
 					"details": {
-						"queryFile": "./out/src/sql/wait_resources.sql",
+						"queryFile": "./sql/wait_resources.sql",
 						"label": {
 							"column": "WaitType",
 							"state": []
@@ -206,7 +206,7 @@
 							"columnsAsLabels": true
 						}
 					},
-					"queryFile": "./out/src/sql/memorybydb.sql"
+					"queryFile": "./sql/memorybydb.sql"
 				}
 			},
 			{
@@ -220,7 +220,7 @@
 							"legendPosition": "none"
 						}
 					},
-					"queryFile": "./out/src/sql/typeofContentions.sql",
+					"queryFile": "./sql/typeofContentions.sql",
 					"autoRefreshInterval": 0.05
 				}
 			},
@@ -236,7 +236,7 @@
 							"xAxisLabel": "Object Ids for System Tables"
 						}
 					},
-					"queryFile": "./out/src/sql/metadataContention.sql",
+					"queryFile": "./sql/metadataContention.sql",
 					"autoRefreshInterval": 0.05
 				}
 			},
@@ -252,7 +252,7 @@
 							"xAxisLabel": "Page Types"
 						}
 					},
-					"queryFile": "./out/src/sql/allocationContention.sql",
+					"queryFile": "./sql/allocationContention.sql",
 					"autoRefreshInterval": 0.05
 				}
 			}

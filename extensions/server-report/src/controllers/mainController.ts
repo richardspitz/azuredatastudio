@@ -39,7 +39,7 @@ export default class MainController extends ControllerBase {
 		vscode.commands.executeCommand('azdata.widget.setAutoRefreshState', 'type-of-contention', connection.id, true);
 		vscode.commands.executeCommand('azdata.widget.setAutoRefreshState', 'metadata-contention', connection.id, true);
 		vscode.commands.executeCommand('azdata.widget.setAutoRefreshState', 'allocation-contention', connection.id, true);
-		const sqlContent = (await fs.readFile(path.join(__dirname, '..', 'sql', fileName))).toString();
+		const sqlContent = (await fs.readFile(path.join(__dirname, '..', '..', '..', 'sql', fileName))).toString();
 		const doc = await vscode.workspace.openTextDocument({ language: 'sql', content: sqlContent });
 		await vscode.window.showTextDocument(doc, vscode.ViewColumn.Active, false);
 		const filePath = doc.uri.toString();
