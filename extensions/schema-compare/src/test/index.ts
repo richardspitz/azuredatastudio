@@ -9,7 +9,7 @@ const testRunner = require('vscode/lib/testrunner');
 const suite = 'Schema Compare Tests';
 
 const options: any = {
-	ui: 'bdd',
+	ui: 'tdd',
 	useColors: true,
 	timeout: 60000
 };

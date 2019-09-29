@@ -9,7 +9,7 @@ import * as testRunner from 'vscodetestcover';
 const suite = 'DacFx Tests';
 
 const testOptions: any = {
-	ui: 'bdd',
+	ui: 'tdd',
 	useColors: true,
 	timeout: 60000
 };
