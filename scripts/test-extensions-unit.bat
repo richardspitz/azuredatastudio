@@ -27,7 +27,7 @@ REM call .\scripts\code.bat --extensionDevelopmentPath=%~dp0\..\extensions\noteb
 REM echo starting resource deployment tests
 REM call .\scripts\code.bat --extensionDevelopmentPath=%~dp0\..\extensions\resource-deployment --extensionTestsPath=%~dp0\..\extensions\resource-deployment\out\test --user-data-dir=%VSCODEUSERDATADIR% --extensions-dir=%VSCODEEXTENSIONSDIR% --remote-debugging-port=9222
 echo starting markdown test
-call .\scripts\code.bat --extensionDevelopmentPath=%~dp0\..\extensions\markdown-language-features --extensionTestsPath=%~dp0\..\extensions\markdown-language-features\out\test --user-data-dir=%VSCODEUSERDATADIR% --extensions-dir=%VSCODEEXTENSIONSDIR% --disableExtensions --remote-debugging-port=9222
+call .\scripts\code.bat --extensionDevelopmentPath=%~dp0\..\extensions\markdown-language-features --extensionTestsPath=%~dp0\..\extensions\markdown-language-features\out\test --user-data-dir=%VSCODEUSERDATADIR% --extensions-dir=%VSCODEEXTENSIONSDIR% --disable-telemetry --disable-crash-reporter --disable-updates --disable-extensions --disable-inspect
 
 if %errorlevel% neq 0 exit /b %errorlevel%
 
