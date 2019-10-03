@@ -33,8 +33,8 @@ if (suite === SuiteType.Stress) {
 
 // set relevant mocha options from the environment
 if (process.env.ADS_TEST_GREP) {
-	options.grep = new RegExp(process.env.ADS_TEST_GREP);
-	console.log(`setting options.grep to: ${options.grep}`);
+	options.fgrep = process.env.ADS_TEST_GREP;
+	console.log(`setting options.fgrep to: ${options.fgrep}`);
 }
 if (process.env.ADS_TEST_INVERT_GREP) {
 	options.invert = parseInt(process.env.ADS_TEST_INVERT_GREP);
