@@ -32,8 +32,9 @@ if (args['nogpu']) { // {{SQL CARBON EDIT}}
 	app.disableHardwareAcceleration(); // {{SQL CARBON EDIT}}
 	app.commandLine.appendSwitch('headless'); // {{SQL CARBON EDIT}}
 	app.commandLine.appendSwitch('disable-dev-shm-usage'); // {{SQL CARBON EDIT}}
-	app.commandLine.appendSwitch('enable-logging');
+	app.commandLine.appendSwitch('enable-logging', 'stderr');
 	app.commandLine.appendSwitch('disable-gpu'); // {{SQL CARBON EDIT}}
+	app.commandLine.appendSwitch('v', 1);
 } // {{SQL CARBON EDIT}}
 
 const userDataPath = getUserDataPath(args);
