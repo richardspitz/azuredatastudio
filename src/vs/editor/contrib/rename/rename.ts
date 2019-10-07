@@ -115,7 +115,6 @@ class RenameController extends Disposable implements IEditorContribution {
 		private readonly editor: ICodeEditor,
 		@INotificationService private readonly _notificationService: INotificationService,
 		@IBulkEditService private readonly _bulkEditService: IBulkEditService,
-		@IEditorProgressService private readonly _progressService: IEditorProgressService,
 		@IContextKeyService private readonly _contextKeyService: IContextKeyService,
 		@IThemeService private readonly _themeService: IThemeService,
 	) {
@@ -164,7 +163,6 @@ class RenameController extends Disposable implements IEditorContribution {
 		let loc: RenameLocation & Rejection | undefined;
 		try {
 			const resolveLocationOperation = skeleton.resolveRenameLocation(token);
-			this._progressService.showWhile(resolveLocationOperation, 250);
 			loc = await resolveLocationOperation;
 		} catch (e) {
 			MessageController.get(this.editor).showMessage(e || nls.localize('resolveRenameLocationFailed', "An unknown error occurred while resolving rename location"), position);
@@ -233,7 +231,6 @@ class RenameController extends Disposable implements IEditorContribution {
 				return Promise.reject(err);
 			}));
 
-			this._progressService.showWhile(renameOperation, 250);
 			return renameOperation;
 
 		});

@@ -53,7 +53,6 @@ export class QuickFixController extends Disposable implements IEditorContributio
 		editor: ICodeEditor,
 		@IMarkerService markerService: IMarkerService,
 		@IContextKeyService contextKeyService: IContextKeyService,
-		@IEditorProgressService progressService: IEditorProgressService,
 		@IContextMenuService contextMenuService: IContextMenuService,
 		@IKeybindingService keybindingService: IKeybindingService,
 		@ICommandService private readonly _commandService: ICommandService,
@@ -63,7 +62,7 @@ export class QuickFixController extends Disposable implements IEditorContributio
 		super();
 
 		this._editor = editor;
-		this._model = this._register(new CodeActionModel(this._editor, markerService, contextKeyService, progressService));
+		this._model = this._register(new CodeActionModel(this._editor, markerService, contextKeyService));
 		this._register(this._model.onDidChangeState((newState) => this.update(newState)));
 
 		this._ui = this._register(new CodeActionUi(editor, QuickFixAction.Id, {

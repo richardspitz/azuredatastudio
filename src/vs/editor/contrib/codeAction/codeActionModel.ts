@@ -169,7 +169,6 @@ export class CodeActionModel extends Disposable {
 		private readonly _editor: ICodeEditor,
 		private readonly _markerService: IMarkerService,
 		contextKeyService: IContextKeyService,
-		private readonly _progressService?: IEditorProgressService
 	) {
 		super();
 		this._supportedCodeActions = SUPPORTED_CODE_ACTIONS.bindTo(contextKeyService);
@@ -212,9 +211,6 @@ export class CodeActionModel extends Disposable {
 				}
 
 				const actions = createCancelablePromise(token => getCodeActions(model, trigger.selection, trigger.trigger, token));
-				if (this._progressService && trigger.trigger.type === 'manual') {
-					this._progressService.showWhile(actions, 250);
-				}
 
 				this.setState(new CodeActionsState.Triggered(trigger.trigger, trigger.selection, trigger.position, actions));
 

@@ -54,7 +54,7 @@ suite('CodeActionModel', () => {
 		disposables.add(reg);
 
 		const contextKeys = new MockContextKeyService();
-		const model = disposables.add(new CodeActionModel(editor, markerService, contextKeys, undefined));
+		const model = disposables.add(new CodeActionModel(editor, markerService, contextKeys));
 		disposables.add(model.onDidChangeState((e: CodeActionsState.Triggered) => {
 			assert.equal(e.trigger.type, 'auto');
 			assert.ok(e.actions);
@@ -93,7 +93,7 @@ suite('CodeActionModel', () => {
 
 		return new Promise((resolve, reject) => {
 			const contextKeys = new MockContextKeyService();
-			const model = disposables.add(new CodeActionModel(editor, markerService, contextKeys, undefined));
+			const model = disposables.add(new CodeActionModel(editor, markerService, contextKeys));
 			disposables.add(model.onDidChangeState((e: CodeActionsState.Triggered) => {
 				assert.equal(e.trigger.type, 'auto');
 				assert.ok(e.actions);
@@ -129,7 +129,7 @@ suite('CodeActionModel', () => {
 		// case 1 - drag selection over multiple lines -> range of enclosed marker, position or marker
 		await new Promise(resolve => {
 			const contextKeys = new MockContextKeyService();
-			const model = disposables.add(new CodeActionModel(editor, markerService, contextKeys, undefined));
+			const model = disposables.add(new CodeActionModel(editor, markerService, contextKeys));
 			disposables.add(model.onDidChangeState((e: CodeActionsState.Triggered) => {
 				assert.equal(e.trigger.type, 'auto');
 				const selection = <Selection>e.rangeOrSelection;
@@ -152,7 +152,7 @@ suite('CodeActionModel', () => {
 
 		let triggerCount = 0;
 		const contextKeys = new MockContextKeyService();
-		const model = disposables.add(new CodeActionModel(editor, markerService, contextKeys, undefined));
+		const model = disposables.add(new CodeActionModel(editor, markerService, contextKeys));
 		disposables.add(model.onDidChangeState((e: CodeActionsState.Triggered) => {
 			assert.equal(e.trigger.type, 'auto');
 			++triggerCount;
