@@ -515,7 +515,9 @@ export abstract class AbstractExtHostExtensionService implements ExtHostExtensio
 	}
 
 	private _handleExtensionTests(): Promise<void> {
-		return this._doHandleExtensionTests().then(undefined, error => {
+		return this._doHandleExtensionTests().then(() => {
+			console.log('extension test completed....');
+		}, error => {
 			console.error(error); // ensure any error message makes it onto the console
 
 			return Promise.reject(error);
@@ -558,7 +560,7 @@ export abstract class AbstractExtHostExtensionService implements ExtHostExtensio
 				};
 
 				const runResult = testRunner!.run(extensionTestsPath, oldTestRunnerCallback);
-
+				console.log(`RUN RESULT: ${runResult}`);
 				// Using the new API `run(): Promise<void>`
 				if (runResult && runResult.then) {
 					console.log('NEW TEST RUNNER');
