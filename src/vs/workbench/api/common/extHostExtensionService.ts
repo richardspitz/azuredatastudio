@@ -527,6 +527,7 @@ export abstract class AbstractExtHostExtensionService implements ExtHostExtensio
 		if (!(extensionDevelopmentLocationURI && extensionTestsLocationURI && extensionTestsLocationURI.scheme === Schemas.file)) {
 			return Promise.resolve(undefined);
 		}
+		console.log(new Error().stack);
 
 		const extensionTestsPath = originalFSPath(extensionTestsLocationURI);
 
@@ -541,6 +542,7 @@ export abstract class AbstractExtHostExtensionService implements ExtHostExtensio
 
 		// Execute the runner if it follows the old `run` spec
 		if (testRunner && typeof testRunner.run === 'function') {
+			console.log('OLD TEST RUNNER');
 			return new Promise<void>((c, e) => {
 				console.log(`Extensions Tests Path: ${extensionTestsPath}`);
 				const oldTestRunnerCallback = (error: Error, failures: number | undefined) => {
@@ -559,6 +561,7 @@ export abstract class AbstractExtHostExtensionService implements ExtHostExtensio
 
 				// Using the new API `run(): Promise<void>`
 				if (runResult && runResult.then) {
+					console.log('NEW TEST RUNNER');
 					runResult
 						.then(() => {
 							c();
