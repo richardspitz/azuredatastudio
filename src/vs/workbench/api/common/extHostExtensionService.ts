@@ -542,7 +542,9 @@ export abstract class AbstractExtHostExtensionService implements ExtHostExtensio
 		// Execute the runner if it follows the old `run` spec
 		if (testRunner && typeof testRunner.run === 'function') {
 			return new Promise<void>((c, e) => {
+				console.log(`Extensions Tests Path: ${extensionTestsPath}`);
 				const oldTestRunnerCallback = (error: Error, failures: number | undefined) => {
+					console.log(`MORE INFO: ${error} - ${failures}`);
 					if (error) {
 						e(error.toString());
 					} else {
