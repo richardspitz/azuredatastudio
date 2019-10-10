@@ -579,17 +579,14 @@ export abstract class AbstractExtHostExtensionService implements ExtHostExtensio
 	}
 
 	private _gracefulExit(code: number): void {
-		// to give the PH process a chance to flush any outstanding console
-		// messages to the main process, we delay the exit() by some time
-		setTimeout(() => {
-			// If extension tests are running, give the exit code to the renderer
-			if (this._initData.remote.isRemote && !!this._initData.environment.extensionTestsLocationURI) {
-				this._mainThreadExtensionsProxy.$onExtensionHostExit(code);
-				return;
-			}
 
-			this._hostUtils.exit(code);
-		}, 500);
+		// If extension tests are running, give the exit code to the renderer
+		if (this._initData.remote.isRemote && !!this._initData.environment.extensionTestsLocationURI) {
+			this._mainThreadExtensionsProxy.$onExtensionHostExit(code);
+			return;
+		}
+
+		this._hostUtils.exit(code);
 	}
 
 	private _startExtensionHost(): Promise<void> {
