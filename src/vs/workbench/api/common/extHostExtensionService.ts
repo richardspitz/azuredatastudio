@@ -579,7 +579,7 @@ export abstract class AbstractExtHostExtensionService implements ExtHostExtensio
 	}
 
 	private _gracefulExit(code: number): void {
-
+		console.log('GRACEFUL EXIT');
 		// If extension tests are running, give the exit code to the renderer
 		if (this._initData.remote.isRemote && !!this._initData.environment.extensionTestsLocationURI) {
 			this._mainThreadExtensionsProxy.$onExtensionHostExit(code);
