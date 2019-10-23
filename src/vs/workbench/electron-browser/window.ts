@@ -60,7 +60,7 @@ import { ITunnelService, extractLocalHostUriMetaDataForPortMapping } from 'vs/pl
 import { IWorkbenchLayoutService, Parts } from 'vs/workbench/services/layout/browser/layoutService';
 import { IHostService } from 'vs/workbench/services/host/browser/host';
 import { IElectronEnvironmentService } from 'vs/workbench/services/electron/electron-browser/electronEnvironmentService';
-import {init} from '@sentry/electron';
+import { init } from '@sentry/electron';
 
 export class ElectronWindow extends Disposable {
 
@@ -525,7 +525,8 @@ export class ElectronWindow extends Disposable {
 
 	private async setupCrashReporter(): Promise<void> {
 		init({
-			dsn: 'https://cf92839a9422411ca1bc7f839986e9eb@sentry.io/1764727'
+			dsn: 'https://cf92839a9422411ca1bc7f839986e9eb@sentry.io/1764727',
+			enableNative: true
 		});
 	}
 

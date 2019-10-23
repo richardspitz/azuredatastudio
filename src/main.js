@@ -11,7 +11,8 @@ const lp = require('./vs/base/node/languagePacks');
 const sentry = require('@sentry/electron');
 
 sentry.init({
-	dsn: 'https://cf92839a9422411ca1bc7f839986e9eb@sentry.io/1764727'
+	dsn: 'https://cf92839a9422411ca1bc7f839986e9eb@sentry.io/1764727',
+	enableNative: true
 });
 
 perf.mark('main:started');
