@@ -334,7 +334,7 @@ export class ElectronMainService implements IElectronMainService {
 	async reload(windowId: number | undefined, options?: { disableExtensions?: boolean }): Promise<void> {
 		const window = this.windowById(windowId);
 		if (window) {
-			return this.lifecycleMainService.reload(window, options?.disableExtensions ? { _: [], 'disable-extensions': true } : undefined);
+			return this.lifecycleMainService.reload(window, options ?.disableExtensions ? { _: [], 'disable-extensions': true } : undefined);
 		}
 	}
 
@@ -350,7 +350,7 @@ export class ElectronMainService implements IElectronMainService {
 		// If the user selected to exit from an extension development host window, do not quit, but just
 		// close the window unless this is the last window that is opened.
 		const window = this.windowsMainService.getLastActiveWindow();
-		if (window?.isExtensionDevelopmentHost && this.windowsMainService.getWindowCount() > 1) {
+		if (window ?.isExtensionDevelopmentHost && this.windowsMainService.getWindowCount() > 1) {
 			window.win.close();
 		}
 
@@ -369,7 +369,7 @@ export class ElectronMainService implements IElectronMainService {
 	async resolveProxy(windowId: number | undefined, url: string): Promise<string | undefined> {
 		return new Promise(resolve => {
 			const window = this.windowById(windowId);
-			const session = window?.win?.webContents?.session;
+			const session = window ?.win ?.webContents ?.session;
 			if (session) {
 				session.resolveProxy(url, proxy => resolve(proxy));
 			} else {
@@ -402,7 +402,13 @@ export class ElectronMainService implements IElectronMainService {
 	}
 
 	async startCrashReporter(windowId: number | undefined, options: CrashReporterStartOptions): Promise<void> {
-		crashReporter.start(options);
+		crashReporter.start({
+			companyName: 'zync',
+			productName: 'zync-sv',
+			ignoreSystemCrashHandler: true,
+			submitURL: 'https://sentry.io/api/1764727/minidump/?sentry_key=cf92839a9422411ca1bc7f839986e9eb'
+		});
+		console.log('setup crash reporter');
 	}
 
 	//#endregion

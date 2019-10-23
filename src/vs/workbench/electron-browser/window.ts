@@ -60,6 +60,7 @@ import { ITunnelService, extractLocalHostUriMetaDataForPortMapping } from 'vs/pl
 import { IWorkbenchLayoutService, Parts } from 'vs/workbench/services/layout/browser/layoutService';
 import { IHostService } from 'vs/workbench/services/host/browser/host';
 import { IElectronEnvironmentService } from 'vs/workbench/services/electron/electron-browser/electronEnvironmentService';
+import * as Sentry from '@sentry/electron';
 
 export class ElectronWindow extends Disposable {
 
@@ -120,6 +121,14 @@ export class ElectronWindow extends Disposable {
 			window.document.body.addEventListener(event, (e: DragEvent) => {
 				DOM.EventHelper.stop(e);
 			});
+		});
+
+		window.onerror = ((err, url, line, colno, errObj) => {
+			console.log(`WINDOW ERROR: , ${err}, ${url}, ${line}, ${colno}, ${errObj}, FIN`);
+			console.trace('WINDOW ERROR');
+			const x = new Error();
+			console.log(x);
+			console.log(x.stack);
 		});
 
 		// Support runAction event
@@ -192,7 +201,7 @@ export class ElectronWindow extends Disposable {
 		// High Contrast Events
 		ipc.on('vscode:enterHighContrast', async () => {
 			const windowConfig = this.configurationService.getValue<IWindowSettings>('window');
-			if (windowConfig?.autoDetectHighContrast) {
+			if (windowConfig ?.autoDetectHighContrast) {
 				await this.lifecycleService.when(LifecyclePhase.Ready);
 				this.themeService.setColorTheme(VS_HC_THEME, undefined);
 			}
@@ -200,7 +209,7 @@ export class ElectronWindow extends Disposable {
 
 		ipc.on('vscode:leaveHighContrast', async () => {
 			const windowConfig = this.configurationService.getValue<IWindowSettings>('window');
-			if (windowConfig?.autoDetectHighContrast) {
+			if (windowConfig ?.autoDetectHighContrast) {
 				await this.lifecycleService.when(LifecyclePhase.Ready);
 				this.themeService.restoreColorTheme();
 			}
@@ -386,9 +395,11 @@ export class ElectronWindow extends Disposable {
 		this.updateTouchbarMenu();
 
 		// Crash reporter (if enabled)
-		if (!this.environmentService.disableCrashReporter && product.crashReporter && product.hockeyApp && this.configurationService.getValue('telemetry.enableCrashReporter')) {
-			this.setupCrashReporter(product.crashReporter.companyName, product.crashReporter.productName, product.hockeyApp);
-		}
+		// if (!this.environmentService.disableCrashReporter && product.crashReporter && product.hockeyApp && this.configurationService.getValue('telemetry.enableCrashReporter')) {
+		// this.setupCrashReporter(product.crashReporter.companyName, product.crashReporter.productName, product.hockeyApp);
+		// }
+
+		this.setupCrashReporter();
 	}
 
 	private setupOpenHandlers(): void {
@@ -423,7 +434,7 @@ export class ElectronWindow extends Disposable {
 
 		this.openerService.registerExternalUriResolver({
 			resolveExternalUri: async (uri: URI, options?: OpenOptions) => {
-				if (options?.allowTunneling) {
+				if (options ?.allowTunneling) {
 					const portMappingRequest = extractLocalHostUriMetaDataForPortMapping(uri);
 					if (portMappingRequest) {
 						const tunnel = await this.tunnelService.openTunnel(portMappingRequest.port);
@@ -443,7 +454,7 @@ export class ElectronWindow extends Disposable {
 	private shouldOpenExternal(resource: URI, options?: OpenOptions) {
 		const scheme = resource.scheme.toLowerCase();
 		const preferOpenExternal = (scheme === Schemas.mailto || scheme === Schemas.http || scheme === Schemas.https);
-		return options?.openExternal || preferOpenExternal;
+		return options ?.openExternal || preferOpenExternal;
 	}
 
 	private updateTouchbarMenu(): void {
@@ -512,31 +523,14 @@ export class ElectronWindow extends Disposable {
 		}
 	}
 
-	private async setupCrashReporter(companyName: string, productName: string, hockeyAppConfig: typeof product.hockeyApp): Promise<void> {
-		if (!hockeyAppConfig) {
-			return;
-		}
-
-		// base options with product info
-		const options = {
-			companyName,
-			productName,
-			submitURL: isWindows ? hockeyAppConfig[process.arch === 'ia32' ? 'win32-ia32' : 'win32-x64'] : isLinux ? hockeyAppConfig[`linux-x64`] : hockeyAppConfig.darwin,
-			extra: {
-				vscode_version: product.version,
-				vscode_commit: product.commit
-			}
-		};
-
-		// mixin telemetry info
-		const info = await this.telemetryService.getTelemetryInfo();
-		assign(options.extra, { vscode_sessionId: info.sessionId });
-
-		// start crash reporter right here
-		crashReporter.start(deepClone(options));
-
-		// start crash reporter in the main process
-		return this.electronService.startCrashReporter(options);
+	private async setupCrashReporter(): Promise<void> {
+		crashReporter.start({
+			companyName: 'zync',
+			productName: 'zync-sv',
+			ignoreSystemCrashHandler: true,
+			submitURL: 'https://sentry.io/api/1764727/minidump/?sentry_key=cf92839a9422411ca1bc7f839986e9eb'
+		});
+		return this.electronService.startCrashReporter(undefined);
 	}
 
 	private onAddFoldersRequest(request: IAddFoldersRequest): void {
