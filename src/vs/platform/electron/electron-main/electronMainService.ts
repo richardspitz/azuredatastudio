@@ -21,6 +21,7 @@ import { URI } from 'vs/base/common/uri';
 import { parseArgs, OPTIONS } from 'vs/platform/environment/node/argv';
 import { ITelemetryData, ITelemetryService } from 'vs/platform/telemetry/common/telemetry';
 import { createDecorator } from 'vs/platform/instantiation/common/instantiation';
+import {init} from '@sentry/electron';
 
 export interface IElectronMainService extends AddFirstParameterToFunctions<IElectronService, Promise<any> /* only methods, not events */, number | undefined /* window ID */> { }
 
@@ -402,13 +403,9 @@ export class ElectronMainService implements IElectronMainService {
 	}
 
 	async startCrashReporter(windowId: number | undefined, options: CrashReporterStartOptions): Promise<void> {
-		crashReporter.start({
-			companyName: 'zync',
-			productName: 'zync-sv',
-			ignoreSystemCrashHandler: true,
-			submitURL: 'https://sentry.io/api/1764727/minidump/?sentry_key=cf92839a9422411ca1bc7f839986e9eb'
+		init({
+			dsn: 'https://cf92839a9422411ca1bc7f839986e9eb@sentry.io/1764727'
 		});
-		console.log('setup crash reporter');
 	}
 
 	//#endregion
