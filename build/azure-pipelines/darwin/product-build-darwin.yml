@@ -9,7 +9,7 @@ steps:
   inputs:
     keyfile: 'build/.cachesalt, .build/commit, .build/quality'
     targetfolder: '.build, out-build, out-vscode-min, out-vscode-reh-min, out-vscode-reh-web-min'
-    vstsFeed: 'npm-vscode'
+    vstsFeed: 'npm-cache'
     platformIndependent: true
     alias: 'Compilation'
 
@@ -57,7 +57,7 @@ steps:
   inputs:
     keyfile: 'build/.cachesalt, .yarnrc, remote/.yarnrc, **/yarn.lock, !**/node_modules/**/yarn.lock, !**/.*/**/yarn.lock'
     targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-    vstsFeed: 'npm-vscode'
+    vstsFeed: 'npm-cache'
 
 - script: |
     set -e
@@ -69,7 +69,7 @@ steps:
   inputs:
     keyfile: 'build/.cachesalt, .yarnrc, remote/.yarnrc, **/yarn.lock, !**/node_modules/**/yarn.lock, !**/.*/**/yarn.lock'
     targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-    vstsFeed: 'npm-vscode'
+    vstsFeed: 'npm-cache'
   condition: and(succeeded(), ne(variables['CacheRestored'], 'true'))
 
 - script: |
