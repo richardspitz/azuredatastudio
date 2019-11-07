@@ -108,36 +108,36 @@ jobs:
   steps:
   - template: darwin/product-build-darwin.yml
 
-- job: Release
-  condition: and(succeeded(), eq(variables['VSCODE_COMPILE_ONLY'], 'false'), or(eq(variables['VSCODE_RELEASE'], 'true'), and(or(eq(variables['VSCODE_QUALITY'], 'insider'), eq(variables['VSCODE_QUALITY'], 'exploration')), eq(variables['Build.Reason'], 'Schedule'))))
-  pool:
-    vmImage: 'Ubuntu-16.04'
-  dependsOn:
-  - Windows
-  # - Windows32
-  - Linux
-  # - LinuxSnap
-  # - LinuxArmhf
-  # - LinuxAlpine
-  - macOS
-  steps:
-  - template: release.yml
+# - job: Release
+#   condition: and(succeeded(), eq(variables['VSCODE_COMPILE_ONLY'], 'false'), or(eq(variables['VSCODE_RELEASE'], 'true'), and(or(eq(variables['VSCODE_QUALITY'], 'insider'), eq(variables['VSCODE_QUALITY'], 'exploration')), eq(variables['Build.Reason'], 'Schedule'))))
+#   pool:
+#     vmImage: 'Ubuntu-16.04'
+#   dependsOn:
+#   - Windows
+#   # - Windows32
+#   - Linux
+#   # - LinuxSnap
+#   # - LinuxArmhf
+#   # - LinuxAlpine
+#   - macOS
+#   steps:
+#   - template: release.yml
 
-- job: Mooncake
-  pool:
-    vmImage: 'Ubuntu-16.04'
-  condition: and(succeededOrFailed(), eq(variables['VSCODE_COMPILE_ONLY'], 'false'))
-  dependsOn:
-  - Windows
-  # - Windows32
-  - Linux
-  # - LinuxSnap
-  # - LinuxArmhf
-  # - LinuxAlpine
-  - LinuxWeb
-  - macOS
-  steps:
-  - template: sync-mooncake.yml
+# - job: Mooncake
+#   pool:
+#     vmImage: 'Ubuntu-16.04'
+#   condition: and(succeededOrFailed(), eq(variables['VSCODE_COMPILE_ONLY'], 'false'))
+#   dependsOn:
+#   - Windows
+#   # - Windows32
+#   - Linux
+#   # - LinuxSnap
+#   # - LinuxArmhf
+#   # - LinuxAlpine
+#   - LinuxWeb
+#   - macOS
+#   steps:
+#   - template: sync-mooncake.yml
 
 trigger: none
 pr: none
