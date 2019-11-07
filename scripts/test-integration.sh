@@ -22,12 +22,13 @@ then
 	echo "Running integration tests out of sources."
 else
 	# Run from a built: need to compile all test extensions
-	yarn gulp compile-extension:vscode-api-tests
+	# yarn gulp compile-extension:vscode-api-tests
 	yarn gulp compile-extension:vscode-colorize-tests
 	yarn gulp compile-extension:markdown-language-features
-	yarn gulp compile-extension:emmet
-	yarn gulp compile-extension:css-language-features-server
-	yarn gulp compile-extension:html-language-features-server
+	yarn gulp compile-extension:azurecore
+	# yarn gulp compile-extension:emmet
+	# yarn gulp compile-extension:css-language-features-server
+	# yarn gulp compile-extension:html-language-features-server
 	yarn gulp compile-extension:json-language-features-server
 
 	echo "Running integration tests with '$INTEGRATION_TEST_ELECTRON_PATH' as build."
@@ -44,9 +45,9 @@ fi
 "$INTEGRATION_TEST_ELECTRON_PATH" $LINUX_NO_SANDBOX $ROOT/extensions/azurecore/test-fixtures --extensionDevelopmentPath=$ROOT/extensions/azurecore --extensionTestsPath=$ROOT/extensions/azurecore/out/test --disable-telemetry --disable-crash-reporter --disable-updates --disable-extensions --skip-getting-started --user-data-dir=$VSCODEUSERDATADIR
 
 
-mkdir -p $ROOT/extensions/emmet/test-fixtures
-"$INTEGRATION_TEST_ELECTRON_PATH" $LINUX_NO_SANDBOX $ROOT/extensions/emmet/test-fixtures --extensionDevelopmentPath=$ROOT/extensions/emmet --extensionTestsPath=$ROOT/extensions/emmet/out/test --disable-telemetry --disable-crash-reporter --disable-updates --disable-extensions --skip-getting-started  --user-data-dir=$VSCODEUSERDATADIR
-rm -rf $ROOT/extensions/emmet/test-fixtures
+# mkdir -p $ROOT/extensions/emmet/test-fixtures
+# "$INTEGRATION_TEST_ELECTRON_PATH" $LINUX_NO_SANDBOX $ROOT/extensions/emmet/test-fixtures --extensionDevelopmentPath=$ROOT/extensions/emmet --extensionTestsPath=$ROOT/extensions/emmet/out/test --disable-telemetry --disable-crash-reporter --disable-updates --disable-extensions --skip-getting-started  --user-data-dir=$VSCODEUSERDATADIR
+# rm -rf $ROOT/extensions/emmet/test-fixtures
 
 # Remote Integration Tests
 if [ -f ./resources/server/test/test-remote-integration.sh ]; then
@@ -54,7 +55,7 @@ if [ -f ./resources/server/test/test-remote-integration.sh ]; then
 fi
 
 # Tests in commonJS
-cd $ROOT/extensions/css-language-features/server && $ROOT/scripts/node-electron.sh test/index.js
-cd $ROOT/extensions/html-language-features/server && $ROOT/scripts/node-electron.sh test/index.js
+# cd $ROOT/extensions/css-language-features/server && $ROOT/scripts/node-electron.sh test/index.js
+# cd $ROOT/extensions/html-language-features/server && $ROOT/scripts/node-electron.sh test/index.js
 
 rm -r $VSCODEUSERDATADIR

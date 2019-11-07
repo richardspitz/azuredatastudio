@@ -13,12 +13,13 @@ if "%INTEGRATION_TEST_ELECTRON_PATH%"=="" (
 	echo "Running integration tests out of sources."
 ) else (
 	:: Run from a built: need to compile all test extensions
-	call yarn gulp compile-extension:vscode-api-tests
+	REM call yarn gulp compile-extension:vscode-api-tests
 	call yarn gulp compile-extension:vscode-colorize-tests
 	call yarn gulp compile-extension:markdown-language-features
-	call yarn gulp compile-extension:emmet
-	call yarn gulp compile-extension:css-language-features-server
-	call yarn gulp compile-extension:html-language-features-server
+	call yarn gulp compile-extension:azurecore
+	REM call yarn gulp compile-extension:emmet
+	REM call yarn gulp compile-extension:css-language-features-server
+	REM call yarn gulp compile-extension:html-language-features-server
 	call yarn gulp compile-extension:json-language-features-server
 
 	echo "Running integration tests with '%INTEGRATION_TEST_ELECTRON_PATH%' as build."
@@ -31,12 +32,12 @@ if "%INTEGRATION_TEST_ELECTRON_PATH%"=="" (
 
 :: Tests in the extension host
 
-call "%INTEGRATION_TEST_ELECTRON_PATH%" %~dp0\..\extensions\vscode-api-tests\testWorkspace --enable-proposed-api=vscode.vscode-api-tests --extensionDevelopmentPath=%~dp0\..\extensions\vscode-api-tests --extensionTestsPath=%~dp0\..\extensions\vscode-api-tests\out\singlefolder-tests --disable-telemetry --disable-crash-reporter --disable-updates --disable-extensions --user-data-dir=%VSCODEUSERDATADIR%
-if %errorlevel% neq 0 exit /b %errorlevel%
+REM call "%INTEGRATION_TEST_ELECTRON_PATH%" %~dp0\..\extensions\vscode-api-tests\testWorkspace --enable-proposed-api=vscode.vscode-api-tests --extensionDevelopmentPath=%~dp0\..\extensions\vscode-api-tests --extensionTestsPath=%~dp0\..\extensions\vscode-api-tests\out\singlefolder-tests --disable-telemetry --disable-crash-reporter --disable-updates --disable-extensions --user-data-dir=%VSCODEUSERDATADIR%
+REM if %errorlevel% neq 0 exit /b %errorlevel%
 
-call "%INTEGRATION_TEST_ELECTRON_PATH%" %~dp0\..\extensions\vscode-api-tests\testworkspace.code-workspace --enable-proposed-api=vscode.vscode-api-tests --extensionDevelopmentPath=%~dp0\..\extensions\vscode-api-tests --extensionTestsPath=%~dp0\..\extensions\vscode-api-tests\out\workspace-tests --disable-telemetry --disable-crash-reporter --disable-updates --disable-extensions --user-data-dir=%VSCODEUSERDATADIR%
+REM call "%INTEGRATION_TEST_ELECTRON_PATH%" %~dp0\..\extensions\vscode-api-tests\testworkspace.code-workspace --enable-proposed-api=vscode.vscode-api-tests --extensionDevelopmentPath=%~dp0\..\extensions\vscode-api-tests --extensionTestsPath=%~dp0\..\extensions\vscode-api-tests\out\workspace-tests --disable-telemetry --disable-crash-reporter --disable-updates --disable-extensions --user-data-dir=%VSCODEUSERDATADIR%
 
-if %errorlevel% neq 0 exit /b %errorlevel%
+REM if %errorlevel% neq 0 exit /b %errorlevel%
 
 call "%INTEGRATION_TEST_ELECTRON_PATH%" %~dp0\..\extensions\vscode-colorize-tests\test --extensionDevelopmentPath=%~dp0\..\extensions\vscode-colorize-tests --extensionTestsPath=%~dp0\..\extensions\vscode-colorize-tests\out --disable-telemetry --disable-crash-reporter --disable-updates --disable-extensions --user-data-dir=%VSCODEUSERDATADIR%
 if %errorlevel% neq 0 exit /b %errorlevel%
