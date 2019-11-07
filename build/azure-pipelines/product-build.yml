@@ -40,7 +40,7 @@ jobs:
   condition: and(succeeded(), eq(variables['VSCODE_COMPILE_ONLY'], 'false'), eq(variables['VSCODE_BUILD_LINUX'], 'true'))
   pool:
     vmImage: 'Ubuntu-16.04'
-  container: vscode-x64
+  # container: vscode-x64
   dependsOn:
   - Compile
   steps:
