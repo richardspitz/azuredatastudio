@@ -106,7 +106,7 @@ steps:
     # including the remote server and configure the integration tests
     # to run with these builds instead of running out of sources.
     set -e
-    APP_ROOT=$(agent.builddirectory)/VSCode-darwin
+    APP_ROOT=$(agent.builddirectory)/azuredatastudio-darwin
     APP_NAME="`ls $APP_ROOT | head -n 1`"
     INTEGRATION_TEST_ELECTRON_PATH="$APP_ROOT/$APP_NAME/Contents/MacOS/Electron" \
     VSCODE_REMOTE_SERVER_PATH="$(agent.builddirectory)/vscode-reh-darwin" \
