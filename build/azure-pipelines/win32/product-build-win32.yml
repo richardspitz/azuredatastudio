@@ -189,10 +189,10 @@ steps:
     externalFeedCredentials: 3fc0b7f7-da09-4ae7-a9c8-d69824b1819b
     restoreDirectory: packages
 
-- task: ESRPImportCertTask@1
-  displayName: Import ESRP Request Signing Certificate
-  inputs:
-    ESRP: 'ESRP CodeSign'
+# - task: ESRPImportCertTask@1
+#   displayName: Import ESRP Request Signing Certificate
+#   inputs:
+#     ESRP: 'ESRP CodeSign'
 
 - powershell: |
     $ErrorActionPreference = "Stop"
