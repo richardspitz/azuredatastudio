@@ -89,22 +89,22 @@ steps:
     set -e
     yarn gulp hygiene --skip-tslint
     yarn gulp tslint
-    yarn monaco-compile-check
+    # yarn monaco-compile-check
   displayName: Run hygiene, tslint and monaco compile checks
   condition: and(succeeded(), ne(variables['CacheRestored-Compilation'], 'true'), eq(variables['VSCODE_STEP_ON_IT'], 'false'))
 
-- script: |
-    set -
-    ./build/azure-pipelines/common/extract-telemetry.sh
-  displayName: Extract Telemetry
-  condition: and(succeeded(), ne(variables['CacheRestored-Compilation'], 'true'))
+# - script: |
+#     set -
+#     ./build/azure-pipelines/common/extract-telemetry.sh
+#   displayName: Extract Telemetry
+#   condition: and(succeeded(), ne(variables['CacheRestored-Compilation'], 'true'))
 
-- script: |
-    set -e
-    AZURE_WEBVIEW_STORAGE_ACCESS_KEY="$(vscode-webview-storage-key)" \
-    ./build/azure-pipelines/common/publish-webview.sh
-  displayName: Publish Webview
-  condition: and(succeeded(), ne(variables['CacheRestored-Compilation'], 'true'))
+# - script: |
+#     set -e
+#     AZURE_WEBVIEW_STORAGE_ACCESS_KEY="$(vscode-webview-storage-key)" \
+#     ./build/azure-pipelines/common/publish-webview.sh
+#   displayName: Publish Webview
+#   condition: and(succeeded(), ne(variables['CacheRestored-Compilation'], 'true'))
 
 - script: |
     set -e
@@ -116,12 +116,12 @@ steps:
   displayName: Compile
   condition: and(succeeded(), ne(variables['CacheRestored-Compilation'], 'true'))
 
-- script: |
-    set -e
-    AZURE_STORAGE_ACCESS_KEY="$(ticino-storage-key)" \
-      node build/azure-pipelines/upload-sourcemaps
-  displayName: Upload sourcemaps
-  condition: and(succeeded(), ne(variables['CacheRestored-Compilation'], 'true'))
+# - script: |
+#     set -e
+#     AZURE_STORAGE_ACCESS_KEY="$(ticino-storage-key)" \
+#       node build/azure-pipelines/upload-sourcemaps
+#   displayName: Upload sourcemaps
+#   condition: and(succeeded(), ne(variables['CacheRestored-Compilation'], 'true'))
 
 - task: 1ESLighthouseEng.PipelineArtifactCaching.SaveCacheV1.SaveCache@1
   inputs:
