@@ -50,9 +50,9 @@ fi
 # rm -rf $ROOT/extensions/emmet/test-fixtures
 
 # Remote Integration Tests
-if [ -f ./resources/server/test/test-remote-integration.sh ]; then
-	./resources/server/test/test-remote-integration.sh
-fi
+# if [ -f ./resources/server/test/test-remote-integration.sh ]; then
+# 	./resources/server/test/test-remote-integration.sh
+# fi
 
 # Tests in commonJS
 # cd $ROOT/extensions/css-language-features/server && $ROOT/scripts/node-electron.sh test/index.js
