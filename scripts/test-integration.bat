@@ -14,7 +14,7 @@ if "%INTEGRATION_TEST_ELECTRON_PATH%"=="" (
 ) else (
 	:: Run from a built: need to compile all test extensions
 	REM call yarn gulp compile-extension:vscode-api-tests
-	call yarn gulp compile-extension:vscode-colorize-tests
+	REM call yarn gulp compile-extension:vscode-colorize-tests
 	call yarn gulp compile-extension:markdown-language-features
 	call yarn gulp compile-extension:azurecore
 	REM call yarn gulp compile-extension:emmet
@@ -39,8 +39,8 @@ REM call "%INTEGRATION_TEST_ELECTRON_PATH%" %~dp0\..\extensions\vscode-api-tests
 
 REM if %errorlevel% neq 0 exit /b %errorlevel%
 
-call "%INTEGRATION_TEST_ELECTRON_PATH%" %~dp0\..\extensions\vscode-colorize-tests\test --extensionDevelopmentPath=%~dp0\..\extensions\vscode-colorize-tests --extensionTestsPath=%~dp0\..\extensions\vscode-colorize-tests\out --disable-telemetry --disable-crash-reporter --disable-updates --disable-extensions --user-data-dir=%VSCODEUSERDATADIR%
-if %errorlevel% neq 0 exit /b %errorlevel%
+REM call "%INTEGRATION_TEST_ELECTRON_PATH%" %~dp0\..\extensions\vscode-colorize-tests\test --extensionDevelopmentPath=%~dp0\..\extensions\vscode-colorize-tests --extensionTestsPath=%~dp0\..\extensions\vscode-colorize-tests\out --disable-telemetry --disable-crash-reporter --disable-updates --disable-extensions --user-data-dir=%VSCODEUSERDATADIR%
+REM if %errorlevel% neq 0 exit /b %errorlevel%
 
 :: call "%INTEGRATION_TEST_ELECTRON_PATH%" $%~dp0\..\extensions\emmet\test-fixtures --extensionDevelopmentPath=%~dp0\..\extensions\emmet --extensionTestsPath=%~dp0\..\extensions\emmet\out\test --disable-telemetry --disable-crash-reporter --disable-updates --disable-extensions --user-data-dir=%VSCODEUSERDATADIR% .
 :: if %errorlevel% neq 0 exit /b %errorlevel%
