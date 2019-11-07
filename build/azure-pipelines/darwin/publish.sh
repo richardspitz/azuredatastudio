@@ -5,13 +5,13 @@ set -e
 zip -d ../VSCode-darwin.zip "*.pkg"
 
 # publish the build
-PACKAGEJSON=`ls ../VSCode-darwin/*.app/Contents/Resources/app/package.json`
+PACKAGEJSON=`ls ../azuredatastudio-darwin/*.app/Contents/Resources/app/package.json`
 VERSION=`node -p "require(\"$PACKAGEJSON\").version"`
 node build/azure-pipelines/common/publish.js \
 	"$VSCODE_QUALITY" \
 	darwin \
 	archive \
-	"VSCode-darwin-$VSCODE_QUALITY.zip" \
+	"azuredatastudio-darwin-$VSCODE_QUALITY.zip" \
 	$VERSION \
 	true \
 	../VSCode-darwin.zip

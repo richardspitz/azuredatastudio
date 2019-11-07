@@ -137,7 +137,7 @@ steps:
 
 - script: |
     set -e
-    pushd ../VSCode-darwin && zip -r -X -y ../VSCode-darwin.zip * && popd
+    pushd ../azuredatastudio-darwin && zip -r -X -y ../azuredatastudio-darwin.zip * && popd
   displayName: Archive build
 
 # - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
