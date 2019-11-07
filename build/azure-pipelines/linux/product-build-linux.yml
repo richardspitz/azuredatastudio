@@ -102,7 +102,7 @@ steps:
 
 - script: |
     set -e
-    service xvfb start
+    sudo service xvfb start
   displayName: Start xvfb
   condition: and(succeeded(), eq(variables['VSCODE_STEP_ON_IT'], 'false'))
 
