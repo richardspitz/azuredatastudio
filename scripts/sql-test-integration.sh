@@ -39,7 +39,6 @@ else
 	yarn gulp compile-extension:integration-tests
 	yarn gulp compile-extension:mssql
 	yarn gulp compile-extension:notebook
-	yarn gulp compile-extension:profiler
 	yarn gulp compile-extension:resource-deployment
 	yarn gulp compile-extension:schema-compare
 
@@ -70,7 +69,6 @@ fi
 --extensionDevelopmentPath=$ROOT/extensions/integration-tests \
 --extensionDevelopmentPath=$ROOT/extensions/mssql \
 --extensionDevelopmentPath=$ROOT/extensions/notebook \
---extensionDevelopmentPath=$ROOT/extensions/profiler \
 --extensionDevelopmentPath=$ROOT/extensions/resource-deployment \
 --extensionDevelopmentPath=$ROOT/extensions/schema-compare \
 --extensionTestsPath=$ROOT/extensions/integration-tests/out \
