@@ -210,7 +210,7 @@ steps:
     . build/azure-pipelines/win32/exec.ps1
     $ErrorActionPreference = "Stop"
     exec { yarn gulp "vscode-win32-x64-archive" "vscode-win32-x64-system-setup" "vscode-win32-x64-user-setup" --sign }
-  displayName: Run unit tests
+  displayName: Create Packages
   condition: and(succeeded(), eq(variables['VSCODE_STEP_ON_IT'], 'false'))
 
 - publish: $(Build.SourcesDirectory)\.build\win32-x64\archive\azuredatastudio-win32-x64.zip
