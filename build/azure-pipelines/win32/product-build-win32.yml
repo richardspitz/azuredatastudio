@@ -201,10 +201,13 @@ steps:
 #   inputs:
 #     ESRP: 'ESRP CodeSign'
 
-- powershell: |
-    $ErrorActionPreference = "Stop"
-    .\build\azure-pipelines\win32\import-esrp-auth-cert.ps1 -AuthCertificateBase64 $(esrp-auth-certificate) -AuthCertificateKey $(esrp-auth-certificate-key)
-  displayName: Import ESRP Auth Certificate
+# - powershell: |
+#     $ErrorActionPreference = "Stop"
+#     .\build\azure-pipelines\win32\import-esrp-auth-cert.ps1 -AuthCertificateBase64 $(esrp-auth-certificate) -AuthCertificateKey $(esrp-auth-certificate-key)
+#   displayName: Import ESRP Auth Certificate
+
+- publish: $(Build.SourcesDirectory)/\.build\win32-x64\archive\VSCode-win32-x64.zip
+  artifact: "win32-x64"
 
 - powershell: |
     . build/azure-pipelines/win32/exec.ps1
