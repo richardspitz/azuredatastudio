@@ -209,7 +209,7 @@ steps:
 - powershell: |
     . build/azure-pipelines/win32/exec.ps1
     $ErrorActionPreference = "Stop"
-    exec { yarn gulp "vscode-win32-$Arch-archive" "vscode-win32-$Arch-system-setup" "vscode-win32-$Arch-user-setup" --sign }
+    exec { yarn gulp "vscode-win32-x64-archive" "vscode-win32-x64-system-setup" "vscode-win32-x64-user-setup" --sign }
   displayName: Run unit tests
   condition: and(succeeded(), eq(variables['VSCODE_STEP_ON_IT'], 'false'))
 
