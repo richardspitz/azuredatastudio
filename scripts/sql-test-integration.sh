@@ -10,6 +10,7 @@ else
 	ROOT=$(dirname $(dirname $(readlink -f $0)))
 	VSCODEUSERDATADIR=`mktemp -d 2>/dev/null`
 	VSCODEEXTDIR=`mktemp -d 2>/dev/null`
+	LINUX_NO_SANDBOX="--no-sandbox" # Electron 6 introduces a chrome-sandbox that requires root to run. This can fail. Disable sandbox via --no-sandbox.
 fi
 
 # Default to only running stable tests if test grep isn't set
@@ -28,6 +29,19 @@ then
 	echo "Running integration tests out of sources."
 else
 	# Run from a built: need to compile all test extensions
+	yarn gulp compile-extension:admin-tool-ext-win
+	yarn gulp compile-extension:agent
+	yarn gulp compile-extension:azurecore
+	yarn gulp compile-extension:big-data-cluster
+	yarn gulp compile-extension:cms
+	yarn gulp compile-extension:dacpac
+	yarn gulp compile-extension:import
+	yarn gulp compile-extension:integration-tests
+	yarn gulp compile-extension:mssql
+	yarn gulp compile-extension:notebook
+	yarn gulp compile-extension:profiler
+	yarn gulp compile-extension:resource-deployment
+	yarn gulp compile-extension:schema-compare
 
 	echo "Running integration tests with '$INTEGRATION_TEST_ELECTRON_PATH' as build."
 fi
@@ -42,10 +56,10 @@ else
 	export PYTHON_TEST_PATH=$VSCODEUSERDATADIR/TestPythonInstallation
 	echo $PYTHON_TEST_PATH
 
-	$INTEGRATION_TEST_ELECTRON_PATH --nogpu --extensionDevelopmentPath=$ROOT/extensions/notebook --extensionTestsPath=$ROOT/extensions/notebook/out/integrationTest --user-data-dir=$VSCODEUSERDATADIR --extensions-dir=$VSCODEEXTDIR --remote-debugging-port=9222 --disable-telemetry --disable-crash-reporter --disable-updates --skip-getting-started --disable-inspect
+	"$INTEGRATION_TEST_ELECTRON_PATH" $LINUX_NO_SANDBOX --nogpu --extensionDevelopmentPath=$ROOT/extensions/notebook --extensionTestsPath=$ROOT/extensions/notebook/out/integrationTest --user-data-dir=$VSCODEUSERDATADIR --extensions-dir=$VSCODEEXTDIR --remote-debugging-port=9222 --disable-telemetry --disable-crash-reporter --disable-updates --skip-getting-started --disable-inspect
 fi
 
-$INTEGRATION_TEST_ELECTRON_PATH --nogpu --extensionDevelopmentPath=$ROOT/extensions/admin-pack \
+"$INTEGRATION_TEST_ELECTRON_PATH" $LINUX_NO_SANDBOX --nogpu --extensionDevelopmentPath=$ROOT/extensions/admin-pack \
 --extensionDevelopmentPath=$ROOT/extensions/admin-tool-ext-win \
 --extensionDevelopmentPath=$ROOT/extensions/agent \
 --extensionDevelopmentPath=$ROOT/extensions/azurecore \
