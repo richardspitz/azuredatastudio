@@ -15,19 +15,8 @@ if "%INTEGRATION_TEST_ELECTRON_PATH%"=="" (
 	echo "Running integration tests out of sources."
 ) else (
 	:: Run from a built: need to compile all test extensions
-	call yarn gulp compile-extension:admin-tool-ext-win
-	call yarn gulp compile-extension:agent
-	call yarn gulp compile-extension:azurecore
-	call yarn gulp compile-extension:big-data-cluster
-	call yarn gulp compile-extension:cms
-	call yarn gulp compile-extension:dacpac
-	call yarn gulp compile-extension:import
 	call yarn gulp compile-extension:integration-tests
-	call yarn gulp compile-extension:mssql
 	call yarn gulp compile-extension:notebook
-	call yarn gulp compile-extension:profiler
-	call yarn gulp compile-extension:resource-deployment
-	call yarn gulp compile-extension:schema-compare
 
 	echo "Running integration tests with '%INTEGRATION_TEST_ELECTRON_PATH%' as build."
 )
