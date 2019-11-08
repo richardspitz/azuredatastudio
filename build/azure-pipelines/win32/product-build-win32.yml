@@ -213,7 +213,7 @@ steps:
   displayName: Run unit tests
   condition: and(succeeded(), eq(variables['VSCODE_STEP_ON_IT'], 'false'))
 
-- publish: $(Build.SourcesDirectory)/\.build\win32-x64\archive\VSCode-win32-x64.zip
+- publish: $(Build.SourcesDirectory)\.build\win32-x64\archive\azuredatastudio-win32-x64.zip
   artifact: "win32-x64"
 
 - powershell: |
