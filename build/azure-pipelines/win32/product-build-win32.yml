@@ -206,6 +206,13 @@ steps:
 #     .\build\azure-pipelines\win32\import-esrp-auth-cert.ps1 -AuthCertificateBase64 $(esrp-auth-certificate) -AuthCertificateKey $(esrp-auth-certificate-key)
 #   displayName: Import ESRP Auth Certificate
 
+- powershell: |
+    . build/azure-pipelines/win32/exec.ps1
+    $ErrorActionPreference = "Stop"
+    exec { yarn gulp "vscode-win32-$Arch-archive" "vscode-win32-$Arch-system-setup" "vscode-win32-$Arch-user-setup" --sign }
+  displayName: Run unit tests
+  condition: and(succeeded(), eq(variables['VSCODE_STEP_ON_IT'], 'false'))
+
 - publish: $(Build.SourcesDirectory)/\.build\win32-x64\archive\VSCode-win32-x64.zip
   artifact: "win32-x64"
 
