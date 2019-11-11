@@ -140,24 +140,24 @@ steps:
     pushd ../azuredatastudio-darwin && zip -r -X -y ../azuredatastudio-darwin.zip * && popd
   displayName: Archive build
 
-# - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-#   inputs:
-#     ConnectedServiceName: 'ESRP CodeSign'
-#     FolderPath: '$(agent.builddirectory)'
-#     Pattern: 'VSCode-darwin.zip'
-#     signConfigType: inlineSignParams
-#     inlineOperation: |
-#       [
-#         {
-#           "keyCode": "CP-401337-Apple",
-#           "operationSetCode": "MacAppDeveloperSign",
-#           "parameters": [ ],
-#           "toolName": "sign",
-#           "toolVersion": "1.0"
-#         }
-#       ]
-#     SessionTimeout: 120
-#   displayName: Codesign
+- task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
+  inputs:
+    ConnectedServiceName: 'ESRP CodeSign'
+    FolderPath: '$(agent.builddirectory)'
+    Pattern: 'azuredatastudio-darwin.zip'
+    signConfigType: inlineSignParams
+    inlineOperation: |
+      [
+        {
+          "keyCode": "CP-401337-Apple",
+          "operationSetCode": "MacAppDeveloperSign",
+          "parameters": [ ],
+          "toolName": "sign",
+          "toolVersion": "1.0"
+        }
+      ]
+    SessionTimeout: 120
+  displayName: Codesign
 
 # - script: |
 #     set -e
