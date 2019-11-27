@@ -4,7 +4,7 @@
 [![Build Status](https://dev.azure.com/azuredatastudio/azuredatastudio/_apis/build/status/Azure%20Data%20Studio%20CI?branchName=master)](https://dev.azure.com/azuredatastudio/azuredatastudio/_build/latest?definitionId=4&branchName=master)
 [![Twitter Follow](https://img.shields.io/twitter/follow/azuredatastudio?style=social)](https://twitter.com/azuredatastudio)
 
-Azure Data Studio is a data management tool that enables you to work with SQL Server, Azure SQL DB and SQL DW from Windows, macOS and Linux.
+Richard's test copy  - Azure Data Studio is a data management tool that enables you to work with SQL Server, Azure SQL DB and SQL DW from Windows, macOS and Linux.
 
 ## **Download the latest Azure Data Studio release**
 
